@@ -71,6 +71,10 @@
 * **🇺🇸 美国及欧洲节点（德国、法国、英国等）**：
   * **表现**：延迟普遍在 **200ms 以上**，实测速度多在 **10–60 MB/s** 之间。虽然速度和延迟无法与亚太专线相比，但胜在IP纯净度高，适合用来处理非实时性的跨国业务或特定海外网站访问。
 
+![图片](https://raw.githubusercontent.com/modporbme/qingyunti/main/qingyunti/qyt-1.png)
+
+![图片](https://raw.githubusercontent.com/modporbme/qingyunti/main/qingyunti/qyt-2.png)
+
 ---
 
 ## 4. 流媒体与 AI 工具解锁表现
