@@ -9,7 +9,6 @@ on:
 
 jobs:
   update-date:
-  # 使用官方最新 Ubuntu 环境
     runs-on: ubuntu-latest
 
     permissions:
@@ -28,10 +27,10 @@ jobs:
         run: |
           python -c '
           import datetime
-          import pytz
+          from zoneinfo import ZoneInfo
 
-          # 设置北京时间
-          tz = pytz.timezone("Asia/Shanghai")
+          # 使用标准库 zoneinfo 设置北京时间
+          tz = ZoneInfo("Asia/Shanghai")
           now = datetime.datetime.now(tz)
           date_str = now.strftime("%Y年%m月%d日")
 
