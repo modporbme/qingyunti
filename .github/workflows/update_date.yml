@@ -1,0 +1,58 @@
+name: Update README Date
+
+on:
+  # 允许手动触发
+  workflow_dispatch:
+  # 定时触发：每天北京时间 0 点（UTC 时间 16 点）执行一次
+  schedule:
+    - cron: '0 16 * * *'
+
+jobs:
+  update-date:
+  # 使用官方最新 Ubuntu 环境
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Update date in README.md
+        run: |
+          python -c '
+          import datetime
+          import pytz
+
+          # 设置北京时间
+          tz = pytz.timezone("Asia/Shanghai")
+          now = datetime.datetime.now(tz)
+          date_str = now.strftime("%Y年%m月%d日")
+
+          with open("README.md", "r", encoding="utf-8") as f:
+              content = f.read()
+
+          # 替换更新时间（适配你的格式：更新时间 YYYY年MM月DD日）
+          import re
+          new_content, count = re.subn(r"更新时间 \d{4}年\d{2}月\d{2}日", f"更新时间 {date_str}", content)
+          
+          if count > 0:
+              with open("README.md", "w", encoding="utf-8") as f:
+                  f.write(new_content)
+              print(f"成功将日期更新为: {date_str}")
+          else:
+              print("未找到匹配的日期格式，请检查 README.md")
+          '
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update readme date [skip ci]" && git push)
