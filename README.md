@@ -1,5 +1,5 @@
 # 🚀 青云梯 (QingYunti) 机场深度综合测评
-更新时间 2026年10月05日
+更新时间 2026年10月06日
 > **官网地址**：[qingyunti.im](https://qingyunti.im)  
 > **运营时间**：2021年至今（前身为 V4Speed 机场，历经多年品牌沉淀）  
 > **传输协议**：Shadowsocks (SS)  
